@@ -34,7 +34,7 @@ So - since I don't actually know what I am doing, I started by using the latest 
 
 Create a "Dockerfile"
 ```
-from python:latest
+FROM python:latest
 
 WORKDIR /var/www/html
 COPY * /var/www/html/
