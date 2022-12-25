@@ -1,7 +1,15 @@
 # Container_from_Code
+
+I will provide a few examples of how to take existing code and make it run in a container.
+
+Note: please keep in mind, I am certainly not a developer.  I am very much focused on infrastructure and core-services.  So, my perspective and approach at analysis and problem solving may look a bit unorthodox.  
+
+
 Create a Python Container running python http.server and JS/HTML5 (HexGL) App.
 
-## Description
+## Python container to run JS Apps
+
+### Description
 I have been using the HexGL App to run demos for a few years now.  I have used this app through several iterations:
 
 * First running/hosting on a "typical" Apache webserver
@@ -10,14 +18,12 @@ I have been using the HexGL App to run demos for a few years now.  I have used t
 * Updated to run in Red Hat OpenShift
 * run as a simple local container (what this repo is about)
 
-## Sources
+### Sources
 [HexGL Homepage](https://hexgl.bkcore.com/)  
 [HexGL GitHub](https://github.com/BKcore/HexGL)  
 [My HexGL GitHub](https://github.com/KnowBetterCloud/HexGL)  
 
-## Let's roll...
-(preface) please keep in mind, I am certainly not a developer.  I am very much focused on infrastructure and core-services.  So, my perspective and approach at analysis and problem solving may look a bit unorthodox.
-
+### Let's roll...
 I reviewed BKcore's source on Github to determine what "type of app" I was working with.  I see some *.js files... some *.webapp - and then I look at how he suggests you run the app;
 
 ```
@@ -29,7 +35,7 @@ chromium index.html
 ```
 ah - so I just need a webserver.  Cool.  (note:  I am running Fedora 37 which has "chromium-browser" - which you will see in my overview)
 
-### Create a docker file
+### Create a docker file (Dockerfile)
 So - since I don't actually know what I am doing, I started by using the latest python (which is python3).  And the resulting change - instead of running "SimpleHTTPServer - we will run http.server.
 
 Create a "Dockerfile"
