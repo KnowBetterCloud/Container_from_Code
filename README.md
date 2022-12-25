@@ -7,7 +7,7 @@ Note: please keep in mind, I am certainly not a developer.  I am very much focus
 
 Create a Python Container running python http.server and JS/HTML5 (HexGL) App.
 
-## Python container to run JS Apps
+## Python container to run JS App
 
 ### Description
 I have been using the HexGL App to run demos for a few years now.  I have used this app through several iterations:
