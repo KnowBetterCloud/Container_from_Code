@@ -59,7 +59,7 @@ CMD python -m http.server
 git clone https://github.com/knowbettercloud/HexGL.git
 cd HexGL
 podman build -t my-hexgl .
-podman run --name hexgl localhost/my-hexgl
+podman run -p 8000:8000 --name hexgl localhost/my-hexgl
 chromium-browser http://localhost:8000/index.html
 ```
 
