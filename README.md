@@ -42,14 +42,15 @@ Create a "Dockerfile"
 ```
 FROM python:latest
 LABEL description="HexGL Container Image"
-LABEL version="1.0" 
+LABEL version="1.0"
 
+CMD mkdir -p /var/www/html
 WORKDIR /var/www/html
 COPY * /var/www/html/
 
 EXPOSE 8000
-RUN echo "$PWD"
-CMD python -m http.server 
+CMD "Note: App will be exposed on port: 8000"
+CMD python -m http.server
 ```
 
 ### Build a Container
@@ -58,9 +59,19 @@ CMD python -m http.server
 git clone https://github.com/knowbettercloud/HexGL.git
 cd HexGL
 podman build -t my-hexgl .
-podman run -p 8000:80 --name hexgl localhost/my-hexgl
+podman run --name hexgl localhost/my-hexgl
 chromium-browser http://localhost:8000/index.html
 ```
 
+```
+docker kill $(docker ps -a | grep hexgl | awk '{ print $1 }')
+docker rm $(docker ps -a | grep hexgl | awk '{ print $1 }')
+```
 
+
+as an example, check this out
+```
+podman run -p 8081:80 acantril/containerofcats
+```
+chromium-browser http://localhost:8081/index.html
  
