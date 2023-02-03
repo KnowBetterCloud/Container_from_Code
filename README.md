@@ -53,7 +53,7 @@ CMD python -m http.server 8000
 ### Build a Container
 
 ```
-git clone git://github.com/knowbettercloud/HexGL.git
+git clone https://github.com/knowbettercloud/HexGL.git
 cd HexGL
 podman build -t my-hexgl .
 podman run --name hexgl localhost/my-hexgl
