@@ -41,13 +41,15 @@ So - since I don't actually know what I am doing, I started by using the latest 
 Create a "Dockerfile"
 ```
 FROM python:latest
+LABEL description="HexGL Container Image"
+LABEL version="1.0" 
 
 WORKDIR /var/www/html
 COPY * /var/www/html/
 
 EXPOSE 8000
 RUN echo "$PWD"
-CMD python -m http.server 8000
+CMD python -m http.server 
 ```
 
 ### Build a Container
@@ -56,8 +58,9 @@ CMD python -m http.server 8000
 git clone https://github.com/knowbettercloud/HexGL.git
 cd HexGL
 podman build -t my-hexgl .
-podman run --name hexgl localhost/my-hexgl
+podman run -p 8000:80 --name hexgl localhost/my-hexgl
 chromium-browser http://localhost:8000/index.html
 ```
+
 
  
