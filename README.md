@@ -41,16 +41,24 @@ So - since I don't actually know what I am doing, I started by using the latest 
 Create a "Dockerfile"
 ```
 FROM python:latest
+
 LABEL description="HexGL Container Image"
 LABEL version="1.0"
+LABEL maintainer="knowbettercloud@gmail.com"
 
-CMD mkdir -p /var/www/html
+#CMD mkdir -p /var/www/html
 WORKDIR /var/www/html
-COPY * /var/www/html/
+# COPY * /var/www/html/
+COPY . /var/www/html/
 
+# At Build Time
+RUN echo "Note: App will be exposed on port: 8000"
+# At Run Time
+CMD echo "Note: App will be exposed on port: 8000"
 EXPOSE 8000
-CMD "Note: App will be exposed on port: 8000"
-CMD python -m http.server 8000
+
+#CMD python -m http.server 8000
+CMD [ "python","-m","http.server","8000"]
 ```
 
 ### Build a Container
@@ -69,6 +77,8 @@ podman exec -it hexgl /bin/bash
 
 docker kill $(docker ps -a | grep hexgl | awk '{ print $1 }')
 docker rm $(docker ps -a | grep hexgl | awk '{ print $1 }')
+
+podman images prune
 ```
 
 as an example, check this out
@@ -80,3 +90,19 @@ You may need to run chromium to get it working (I think because of permissions, 
 ```
 chromium-browser http://localhost:8081/index.html
 ```
+
+## Optimization (peeping around corners)
+To quote Geto Boys... "I keep looking over my shoulder and peeping around corners"  
+
+storyline:  While troubleshooting my erroneous "COPY syntax" - I discovered that the "python:latest" image was 956MB.  Whoa!  So - I did some research and discoverd a mention of ["3.8.2-slim-buster"](https://hub.docker.com/layers/library/python/3.8.2-slim-buster/images/sha256-a6e1e46966d0c386381ec4f0c6021db36b24340df133e9f54f2a21c0941ffbae) - hmm.. let's give it a shot.
+
+Updated my Dockerfile from 
+```
+FROM python:latest
+```
+to
+```
+FROM python:3.9-slim-buster
+```
+and it seems to (still) work.  #solid
+
