@@ -50,12 +50,13 @@ COPY * /var/www/html/
 
 EXPOSE 8000
 CMD "Note: App will be exposed on port: 8000"
-CMD python -m http.server
+CMD python -m http.server 8000
 ```
 
 ### Build a Container
 
 ```
+mkdir ~/Projects; cd $_
 git clone https://github.com/knowbettercloud/HexGL.git
 cd HexGL
 podman build -t my-hexgl .
@@ -64,14 +65,18 @@ chromium-browser http://localhost:8000/index.html
 ```
 
 ```
+podman exec -it hexgl /bin/bash
+
 docker kill $(docker ps -a | grep hexgl | awk '{ print $1 }')
 docker rm $(docker ps -a | grep hexgl | awk '{ print $1 }')
 ```
-
 
 as an example, check this out
 ```
 podman run -p 8081:80 acantril/containerofcats
 ```
+
+You may need to run chromium to get it working (I think because of permissions, supportability, etc..)
+```
 chromium-browser http://localhost:8081/index.html
- 
+```
