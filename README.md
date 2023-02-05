@@ -38,7 +38,7 @@ ah - so I just need a webserver.  Cool.  (note:  I am running Fedora 37 which ha
 ### Create a docker file (Dockerfile)
 So - since I don't actually know what I am doing, I started by using the latest python (which is python3).  And the resulting change - instead of running "SimpleHTTPServer - we will run http.server.
 
-Create a "Dockerfile"
+Create a "Dockerfile" [example Dockerfile](https://raw.githubusercontent.com/KnowBetterCloud/HexGL/main/Dockerfile)
 ```
 FROM python:latest
 
@@ -69,6 +69,9 @@ git clone https://github.com/knowbettercloud/HexGL.git
 cd HexGL
 podman build -t my-hexgl .
 podman run -p 8000:8000 --name hexgl localhost/my-hexgl
+```
+In another window, run 
+```
 chromium-browser http://localhost:8000/index.html
 ```
 
