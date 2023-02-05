@@ -75,9 +75,14 @@ In another window, run
 chromium-browser http://localhost:8000/index.html
 ```
 
+To "enter" the pod to review the content
 ```
 podman exec -it hexgl /bin/bash
+podman logs -f (pod number)
+```
 
+To "reset"
+```
 docker kill $(docker ps -a | grep hexgl | awk '{ print $1 }')
 docker rm $(docker ps -a | grep hexgl | awk '{ print $1 }')
 
