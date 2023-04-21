@@ -2,8 +2,7 @@
 
 I will provide a few examples of how to take existing code and make it run in a container.
 
-Note: please keep in mind, I am certainly not a developer.  I am very much focused on infrastructure and core-services.  So, my perspective and approach at analysis and problem solving may look a bit unorthodox.  
-
+Note: please keep in mind, my primary "persona" has not been "a developer".  I am very much focused on infrastructure and core-services.  So, my perspective and approach at analysis and problem solving may look a bit unorthodox.  
 
 Create a Python Container running python http.server and JS/HTML5 (HexGL) App.
 
