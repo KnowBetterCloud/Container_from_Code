@@ -70,8 +70,9 @@ cd HexGL
 podman build -t my-hexgl .
 podman run -p 8000:8000 --name hexgl localhost/my-hexgl
 ```
+
 Or.. Docker, if you prefer
-``
+```
 mkdir ~/Projects; cd $_
 git clone https://github.com/knowbettercloud/HexGL.git
 cd HexGL
