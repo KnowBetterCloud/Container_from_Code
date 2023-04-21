@@ -70,7 +70,16 @@ cd HexGL
 podman build -t my-hexgl .
 podman run -p 8000:8000 --name hexgl localhost/my-hexgl
 ```
-In another window, run 
+Or.. Docker, if you prefer
+``
+mkdir ~/Projects; cd $_
+git clone https://github.com/knowbettercloud/HexGL.git
+cd HexGL
+docker build -t my-hexgl .
+docker run -p 8000:8000 --name hexgl my-hexgl
+```
+
+Then, in another terminal window, run:
 ```
 chromium-browser http://localhost:8000/index.html
 ```
@@ -100,7 +109,7 @@ chromium-browser http://localhost:8081/index.html
 ```
 
 ## Optimization (peeping around corners)
-To quote Geto Boys... "I keep looking over my shoulder and peeping around corners"  
+To quote one of my favorite old school rap artists... "I keep looking over my shoulder and peeping around corners"  
 
 storyline:  While troubleshooting my erroneous "COPY syntax" - I discovered that the "python:latest" image was 956MB.  Whoa!  So - I did some research and discoverd a mention of ["3.8.2-slim-buster"](https://hub.docker.com/layers/library/python/3.8.2-slim-buster/images/sha256-a6e1e46966d0c386381ec4f0c6021db36b24340df133e9f54f2a21c0941ffbae) - hmm.. let's give it a shot.
 
